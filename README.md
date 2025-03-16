@@ -1,202 +1,42 @@
-<div align="center">
-  <img src="sunshine.png" />
-  <h1 align="center">Sunshine</h1>
-  <h4 align="center">Self-hosted game stream host for Moonlight.</h4>
-</div>
+# Sunshine-interception
 
-<div align="center">
-  <a href="https://github.com/LizardByte/Sunshine">
-    <img src="https://img.shields.io/github/stars/lizardbyte/sunshine.svg?logo=github&style=for-the-badge" alt="GitHub stars">
-  </a>
-  <a href="https://github.com/LizardByte/Sunshine/releases/latest">
-    <img src="https://img.shields.io/github/downloads/lizardbyte/sunshine/total.svg?style=for-the-badge&logo=github" alt="GitHub Releases">
-  </a>
-  <a href="https://hub.docker.com/r/lizardbyte/sunshine">
-    <img src="https://img.shields.io/docker/pulls/lizardbyte/sunshine.svg?style=for-the-badge&logo=docker" alt="Docker">
-  </a>
-  <a href="https://github.com/LizardByte/Sunshine/pkgs/container/sunshine">
-    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fipitio.github.io%2Fbackage%2FLizardByte%2FSunshine%2Fsunshine.json&query=%24.downloads&label=ghcr%20pulls&style=for-the-badge&logo=github" alt="GHCR">
-  </a>
-  <a href="https://flathub.org/apps/dev.lizardbyte.app.Sunshine">
-    <img src="https://img.shields.io/flathub/downloads/dev.lizardbyte.app.Sunshine?style=for-the-badge&logo=flathub" alt="Flathub installs">
-  </a>
-  <a href="https://flathub.org/apps/dev.lizardbyte.app.Sunshine">
-    <img src="https://img.shields.io/flathub/v/dev.lizardbyte.app.Sunshine?style=for-the-badge&logo=flathub" alt="Flathub Version">
-  </a>
-  <a href="https://github.com/microsoft/winget-pkgs/tree/master/manifests/l/LizardByte/Sunshine">
-    <img src="https://img.shields.io/winget/v/LizardByte.Sunshine?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHuSURBVFhH7ZfNTtRQGIYZiMDwN/IrCAqIhMSNKxcmymVwG+5dcDVsWHgDrtxwCYQVl+BChzDEwSnPY+eQ0sxoOz1mQuBNnpyvTdvz9jun5/SrjfxnJUkyQbMEz2ELduF1l0YUA3QyTrMAa2AnPtyOXsELeAYNyKtV2EC3k3lYgTOwg09ghy/BTp7CKBRV844BOpmmMV2+ySb4BmInG7AKY7AHH+EYqqhZo9PPBG/BVDlOizAD/XQFmnoPXzxRQX8M/CCYS48L6RIc4ygGHK9WGg9HZSZMUNRPVwNJGg5Hg2Qgqh4N3FsDsb6EmgYm07iwwvUxstdxJTwgmILf4CfZ6bb5OHANX8GN5x20IVxnG8ge94pt2xpwU3GnCwayF4Q2G2vgFLzHndFzQdk4q77nNfCdwL28qNyMtmEf3A1/QV5FjDiPWo5jrwf8TWZChTlgJvL4F9QL50/A43qVidTvLcuoM2wDQ1+IkgefgUpLcYwMVBqCKNJA2b0gKNocOIITOIef8C/F/CdMbh/GklynsSawKLHS8d9/B1x2LUqsfFyy3TMsWj5A1cLkotDbYO4JjWWZlZEGv8EbOIR1CAVN2eG8W5oNKgxaeC6DmTJjZs7ixUxpznLPLT+v4sXpoMLcLI3mzFSonDXIEI/M3QCIO4YuimBJ/gAAAABJRU5ErkJggg==" alt="Winget Version">
-  </a>
-  <a href="https://gurubase.io/g/sunshine">
-    <img src="https://img.shields.io/badge/Gurubase-Ask%20Guru-ef1a1b?style=for-the-badge&logo=data:image/jpeg;base64,/9j/2wCEAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDIBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/AABEIABgAGAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AOLqSO3mlilljido4QGkYDIQEgAn05IH41seFo7aS+uRKlrJci2Y2cd2QImlyOGyQPu7sA8ZxXapAlvpThbPRkv7nTQWhDoIZZRc/XaSAOmcZGOnFfP06XMr3P17F5iqE+Tl1uuvf9Lde55dRW74pit4r61EcdtFdG2U3kVqQY0lyeBgkD5duQOASawqykuV2O6jV9rTU0rXLNjf3Om3QubSXy5QCudoYEEYIIOQR7GnahqV3qk6zXk3mOqhFAUKqqOyqAAByeAKqUUXdrFezhz89lfv1+8KKKKRZ//Z" alt="Gurubase">
-  </a>
-  <a href="https://github.com/LizardByte/Sunshine/actions/workflows/CI.yml?query=branch%3Amaster">
-    <img src="https://img.shields.io/github/actions/workflow/status/lizardbyte/sunshine/CI.yml.svg?branch=master&label=CI%20build&logo=github&style=for-the-badge" alt="GitHub Workflow Status (CI)">
-  </a>
-  <a href="https://github.com/LizardByte/Sunshine/actions/workflows/localize.yml?query=branch%3Amaster">
-    <img src="https://img.shields.io/github/actions/workflow/status/lizardbyte/sunshine/localize.yml.svg?branch=master&label=localize%20build&logo=github&style=for-the-badge" alt="GitHub Workflow Status (localize)">
-  </a>
-  <a href="https://docs.lizardbyte.dev/projects/sunshine">
-    <img src="https://img.shields.io/readthedocs/sunshinestream.svg?label=Docs&style=for-the-badge&logo=readthedocs" alt="Read the Docs">
-  </a>
-  <a href="https://codecov.io/gh/LizardByte/Sunshine">
-    <img src="https://img.shields.io/codecov/c/gh/LizardByte/Sunshine?token=SMGXQ5NVMJ&style=for-the-badge&logo=codecov&label=codecov" alt="Codecov">
-  </a>
-</div>
+[![GitHub license](https://img.shields.io/github/license/kyusieun/Sunshine-interception)](https://github.com/kyusieun/Sunshine-interception/blob/main/LICENSE)
 
-## ℹ️ About
+**Sunshine-interception** is a fork of the high-performance, flexible game streaming host [Sunshine](https://github.com/LizardByte/Sunshine), replacing the input handling method from **SendInput** to the **Interception** driver. This project aims to provide broader input device compatibility and potentially lower latency by utilizing the Interception driver.
 
-Sunshine is a self-hosted game stream host for Moonlight.
-Offering low latency, cloud gaming server capabilities with support for AMD, Intel, and Nvidia GPUs for hardware
-encoding. Software encoding is also available. You can connect to Sunshine from any Moonlight client on a variety of
-devices. A web UI is provided to allow configuration, and client pairing, from your favorite web browser. Pair from
-the local server or any mobile device.
+**Key Changes (SendInput → Interception):**
 
-LizardByte has the full documentation hosted on [Read the Docs](https://docs.lizardbyte.dev/projects/sunshine)
+- **Interception Driver Usage:** Instead of Windows' default `SendInput` API, this project utilizes the [Interception](https://github.com/oblitum/Interception) driver to handle keyboard and mouse input. `SendInput` may not work correctly with some virtual input devices (e.g., Steam Deck controllers) or in environments with certain security software installed. Interception operates at the kernel level, bypassing these limitations and providing more reliable and broader compatibility.
+- **Potential Latency Reduction:** The Interception driver may offer lower input latency compared to `SendInput` in some cases (results may vary depending on your environment).
+- **Compatibility with Security Software:** Some anti-cheat or security software may block `SendInput`, but Interception is less likely to encounter such issues.
 
-* [Stable](https://docs.lizardbyte.dev/projects/sunshine/latest/)
-* [Beta](https://docs.lizardbyte.dev/projects/sunshine/master/)
+**Why Choose Sunshine-interception?**
 
-## 🖥️ System Requirements
+- **If you encounter problems with `SendInput`:** If you experience issues with controller, keyboard, or mouse input not being transmitted properly or intermittently disconnecting when playing games remotely, Sunshine-interception might be the solution.
+- **If you want the lowest possible input latency:** The Interception driver can potentially provide lower latency, resulting in a more responsive gameplay experience.
+- **If you are concerned about conflicts with security software:** As a kernel-level driver, Interception reduces conflicts with security software.
 
-@warning{These tables are a work in progress. Do not purchase hardware based on this information.}
+**Installation and Usage:**
 
-<table>
-    <caption id="minimum_requirements">Minimum Requirements</caption>
-    <tr>
-        <th>Component</th>
-        <th>Requirement</th>
-    </tr>
-    <tr>
-        <td rowspan="3">GPU</td>
-        <td>AMD: VCE 1.0 or higher, see: <a href="https://github.com/obsproject/obs-amd-encoder/wiki/Hardware-Support">obs-amd hardware support</a></td>
-    </tr>
-    <tr>
-        <td>
-            Intel:<br>
-            &nbsp;&nbsp;Linux: VAAPI-compatible, see: <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/linuxmedia-vaapi.html">VAAPI hardware support</a><br>
-            &nbsp;&nbsp;Windows: Skylake or newer with QuickSync encoding support
-        </td>
-    </tr>
-    <tr>
-        <td>Nvidia: NVENC enabled cards, see: <a href="https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new">nvenc support matrix</a></td>
-    </tr>
-    <tr>
-        <td rowspan="2">CPU</td>
-        <td>AMD: Ryzen 3 or higher</td>
-    </tr>
-    <tr>
-        <td>Intel: Core i3 or higher</td>
-    </tr>
-    <tr>
-        <td>RAM</td>
-        <td>4GB or more</td>
-    </tr>
-    <tr>
-        <td rowspan="5">OS</td>
-        <td>Windows: 10+ (Windows Server does not support virtual gamepads)</td>
-    </tr>
-    <tr>
-        <td>macOS: 13+</td>
-    </tr>
-    <tr>
-        <td>Linux/Debian: 12+ (bookworm)</td>
-    </tr>
-    <tr>
-        <td>Linux/Fedora: 40+</td>
-    </tr>
-    <tr>
-        <td>Linux/Ubuntu: 22.04+ (jammy)</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Network</td>
-        <td>Host: 5GHz, 802.11ac</td>
-    </tr>
-    <tr>
-        <td>Client: 5GHz, 802.11ac</td>
-    </tr>
-</table>
+1.  **Install the Interception Driver:** First, you need to install the Interception driver. Refer to the [Interception driver installation guide](https://github.com/oblitum/Interception) for installation instructions. Make sure to use the **command line installer**, and **reboot** your system after installation.
+2.  **Build or Download Sunshine-interception:**
+    - **Build (Advanced Users):** Follow the build instructions for [Sunshine](https://github.com/LizardByte/Sunshine), but use the source code from this repository ([https://github.com/kyusieun/Sunshine-interception](https://github.com/kyusieun/Sunshine-interception)). The build process is identical to the original Sunshine.
+    - **Download (Recommended):** You can download a pre-built Sunshine-interception executable from the Releases section of this repository. (If there is no Releases section, there may not be a release yet. In this case, you will need to build it.)
+3.  **Configure Sunshine-interception:** Run Sunshine-interception and configure it through Sunshine's web interface. The settings are almost identical to the original Sunshine.
 
-<table>
-    <caption id="4k_suggestions">4k Suggestions</caption>
-    <tr>
-        <th>Component</th>
-        <th>Requirement</th>
-    </tr>
-    <tr>
-        <td rowspan="3">GPU</td>
-        <td>AMD: Video Coding Engine 3.1 or higher</td>
-    </tr>
-    <tr>
-        <td>
-            Intel:<br>
-            &nbsp;&nbsp;Linux: HD Graphics 510 or higher<br>
-            &nbsp;&nbsp;Windows: Skylake or newer with QuickSync encoding support
-        </td>
-    </tr>
-    <tr>
-        <td>Nvidia: GeForce GTX 1080 or higher</td>
-    </tr>
-    <tr>
-        <td rowspan="2">CPU</td>
-        <td>AMD: Ryzen 5 or higher</td>
-    </tr>
-    <tr>
-        <td>Intel: Core i5 or higher</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Network</td>
-        <td>Host: CAT5e ethernet or better</td>
-    </tr>
-    <tr>
-        <td>Client: CAT5e ethernet or better</td>
-    </tr>
-</table>
+**Important Notes:**
 
-<table>
-    <caption id="hdr_suggestions">HDR Suggestions</caption>
-    <tr>
-        <th>Component</th>
-        <th>Requirement</th>
-    </tr>
-    <tr>
-        <td rowspan="3">GPU</td>
-        <td>AMD: Video Coding Engine 3.4 or higher</td>
-    </tr>
-    <tr>
-        <td>Intel: HD Graphics 730 or higher</td>
-    </tr>
-    <tr>
-        <td>Nvidia: Pascal-based GPU (GTX 10-series) or higher</td>
-    </tr>
-    <tr>
-        <td rowspan="2">CPU</td>
-        <td>AMD: Ryzen 5 or higher</td>
-    </tr>
-    <tr>
-        <td>Intel: Core i5 or higher</td>
-    </tr>
-    <tr>
-        <td rowspan="2">Network</td>
-        <td>Host: CAT5e ethernet or better</td>
-    </tr>
-    <tr>
-        <td>Client: CAT5e ethernet or better</td>
-    </tr>
-</table>
+- The Interception driver operates at the kernel level, so there is a _very_ small, but non-zero, chance of causing system issues. Please install and use it with caution. If you encounter any problems, you can uninstall the driver and reboot your system.
+- You _must_ install the Interception driver using the **command line installer**.
+- You _must_ **reboot** your system after installing the Interception driver.
+- Not all anti-cheat programs allow the Interception driver. Check the anti-cheat policy of the game before playing online multiplayer games.
 
-## ❓ Support
+**License:**
 
-Our support methods are listed in our [LizardByte Docs](https://docs.lizardbyte.dev/latest/about/support.html).
+This project is distributed under the [GPLv3 License](https://github.com/kyusieun/Sunshine-interception/blob/main/LICENSE) (same as the original Sunshine project). The Interception driver follows a separate license.
 
-<div class="section_buttons">
+---
 
-| Previous |                                       Next |
-|:---------|-------------------------------------------:|
-|          | [Getting Started](docs/getting_started.md) |
+**Disclaimer:**
 
-</div>
-
-<details style="display: none;">
-  <summary></summary>
-  [TOC]
-</details>
+This project is a fork of Sunshine and utilizes the Interception driver. While efforts have been made to ensure stability and compatibility, there is always a (very small) risk associated with using kernel-level drivers. Use this software at your own risk. The developers are not responsible for any issues caused by the use of this software or the Interception driver.
